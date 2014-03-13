@@ -1,24 +1,24 @@
-# karma-ng-html2js-preprocessor [![Build Status](https://travis-ci.org/karma-runner/karma-ng-html2js-preprocessor.png?branch=master)](https://travis-ci.org/karma-runner/karma-ng-html2js-preprocessor)
+# karma-ng-jade2js-preprocessor
 
-> Preprocessor for converting HTML files to [AngularJS](http://angularjs.org/) templates.
+> Preprocessor for converting jade files to [AngularJS](http://angularjs.org/) templates.
 
-*Note:* If you are looking for a general preprocessor that is not tight to Angular, check out [karma-html2js-preprocessor](https://github.com/karma-runner/karma-html2js-preprocessor).
+Forked from [karma-ng-html2js-preprocessor](https://github.com/karma-runner/karma-ng-html2js-preprocessor)
 
 ## Installation
 
-The easiest way is to keep `karma-ng-html2js-preprocessor` as a devDependency in your `package.json`.
+The easiest way is to keep `karma-ng-jade2js-preprocessor` as a devDependency in your `package.json`.
 ```json
 {
   "devDependencies": {
     "karma": "~0.10",
-    "karma-ng-html2js-preprocessor": "~0.1"
+    "karma-ng-jade2js-preprocessor": "~0.1"
   }
 }
 ```
 
 You can simple do it by:
 ```bash
-npm install karma-ng-html2js-preprocessor --save-dev
+npm install karma-ng-jade2js-preprocessor --save-dev
 ```
 
 ## Configuration
@@ -27,17 +27,17 @@ npm install karma-ng-html2js-preprocessor --save-dev
 module.exports = function(config) {
   config.set({
     preprocessors: {
-      '**/*.html': ['ng-html2js']
+      '**/*.jade': ['ng-jade2js']
     },
 
     files: [
       '*.js',
-      '*.html',
+      '*.jade',
       // if you wanna load template files in nested directories, you must use this
-      '**/*.html'
+      '**/*.jade'
     ],
 
-    ngHtml2JsPreprocessor: {
+    ngJade2JsPreprocessor: {
       // strip this from the file path
       stripPrefix: 'public/',
       // prepend this to the
@@ -55,23 +55,6 @@ module.exports = function(config) {
   });
 };
 ```
-
-## How does it work ?
-
-This preprocessor converts HTML files into JS strings and generates Angular modules. These modules, when loaded, puts these HTML files into the `$templateCache` and therefore Angular won't try to fetch them from the server.
-
-For instance this `template.html`...
-```html
-<div>something</div>
-```
-... will be served as `template.html.js`:
-```js
-angular.module('template.html', []).config(function($templateCache) {
-  $templateCache.put('template.html', '<div>something</div>');
-});
-```
-
-See the [ng-directive-testing](https://github.com/vojtajina/ng-directive-testing) for a complete example.
 
 ----
 

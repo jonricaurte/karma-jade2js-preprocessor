@@ -1,46 +1,31 @@
 {
-  "name": "karma-ng-html2js-preprocessor",
+  "name": "karma-ng-jade2js-preprocessor",
   "version": "0.1.0",
-  "description": "A Karma plugin. Compile AngularJS templates to JavaScript on the fly.",
+  "description": "A Karma plugin. Compile Jade AngularJS templates to JavaScript on the fly.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/karma-runner/karma-ng-html2js-preprocessor.git"
+    "url": "git://github.com/chmanie/karma-ng-jade2js-preprocessor.git"
   },
   "keywords": [
     "karma-plugin",
     "karma-preprocessor",
     "angularjs",
     "angular",
-    "html2js"
+    "html2js",
+    "jade2js",
+    "jade"
   ],
-  "author": "Vojta Jina <vojta.jina@gmail.com>",
+  "author": "Christian Maniewski <chmanie@gmail.com>",
   "dependencies": {
     "jade": "~1.3.0"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-simple-mocha": "~0.4",
-    "grunt-contrib-jshint": "~0.6",
-    "chai": "~1.4",
-    "mocha": "~1.8",
-    "grunt-npm": "~0.0.2",
-    "grunt-bump": "~0.0.7",
-    "grunt-auto-release": "~0.0.2"
   },
   "peerDependencies": {
     "karma": ">=0.9"
   },
   "license": "MIT",
-  "contributors": [
-    "Friedel Ziegelmayer <friedel.ziegelmayer@gmail.com>",
-    "Lukasz Bandzarewicz <lucassus@gmail.com>",
-    "Robin Roestenburg <robin@roestenburg.io>",
-    "Lucas Galfasó <lgalfaso@gmail.com>",
-    "Friedel Ziegelmayer <dignifiedquire@gmail.com>",
-    "BrianLenzo <brian.lenzo@gmail.com>"
-  ]
+  "homepage": "https://github.com/chmanie/karma-ng-jade2js-preprocessor"
 }
