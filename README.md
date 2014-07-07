@@ -48,6 +48,10 @@ module.exports = function(config) {
         return cacheId;
       },
 
+      // By default, Jade files are added to template cache with '.html' extension.
+      // Set this option to change it.
+      templateExtension: 'html',
+
       // setting this option will create only a single module that contains templates
       // from all the files, so you can load them all with module('foo')
       moduleName: 'foo'
