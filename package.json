@@ -4,7 +4,7 @@
   "description": "A Karma plugin. Compile Jade AngularJS templates to JavaScript on the fly.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node test/jade2js.test.js"
+    "test": "mocha test/jade2js.test.js"
   },
   "repository": {
     "type": "git",
@@ -27,5 +27,9 @@
     "karma": ">=0.9"
   },
   "license": "MIT",
-  "homepage": "https://github.com/chmanie/karma-ng-jade2js-preprocessor"
+  "homepage": "https://github.com/chmanie/karma-ng-jade2js-preprocessor",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^1.21.4"
+  }
 }
