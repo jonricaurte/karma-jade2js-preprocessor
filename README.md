@@ -4,6 +4,8 @@
 
 Forked from [karma-ng-html2js-preprocessor](https://github.com/karma-runner/karma-ng-html2js-preprocessor)
 
+[![Build Status](https://travis-ci.org/chmanie/karma-ng-jade2js-preprocessor.svg)](https://travis-ci.org/chmanie/karma-ng-jade2js-preprocessor)
+
 ## Installation
 
 The easiest way is to keep `karma-ng-jade2js-preprocessor` as a devDependency in your `package.json`.
