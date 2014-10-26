@@ -48,6 +48,11 @@ module.exports = function(config) {
         return cacheId;
       },
 
+      // Support for jade locals to render at compile time
+      locals: {
+        foo: 'bar'
+      },
+
       // By default, Jade files are added to template cache with '.html' extension.
       // Set this option to change it.
       templateExtension: 'html',
