@@ -34,5 +34,37 @@ describe('jade2js', function() {
       expect(html).to.contain('Hello world');
     });
   });
+  describe('Jade config object', function() {
+    var jade = require('jade');
+    var originalCompile;
+    var callOptions;
+
+    before(function() {
+      originalCompile = jade.compile;
+      jade.compile = function(template, options) {
+        callOptions = options;
+        return function() { return ""; };
+      }
+    });
+
+    after(function() {
+      jade.compile = originalCompile;
+      callOptions = null;
+    });
+
+    it('should pass Jade config object to Jade compile function', function(done) {
+      var config = {
+        jadeOptions: {
+          a: 1,
+          b: 2
+        }
+      };
+      var compileFn = jade2js(LOGGER_STUB, BAST_PATH_STUB, config);
+      compileFn('h1', FILE_STUB, function() {
+        expect(callOptions).to.eql(config.jadeOptions);
+        done();
+      });
+    });
+  });
 });
 
