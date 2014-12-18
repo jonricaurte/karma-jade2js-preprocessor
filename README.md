@@ -12,8 +12,8 @@ The easiest way is to keep `karma-ng-jade2js-preprocessor` as a devDependency in
 ```json
 {
   "devDependencies": {
-    "karma": "~0.10",
-    "karma-ng-jade2js-preprocessor": "~0.1"
+    "karma": "~0.12",
+    "karma-ng-jade2js-preprocessor": "~0.2"
   }
 }
 ```
@@ -42,22 +42,23 @@ module.exports = function(config) {
     ngJade2JsPreprocessor: {
       // strip this from the file path
       stripPrefix: 'public/',
+
       // prepend this to the
       prependPrefix: 'served/',
 
+      // By default, Jade files are added to template cache with '.html' extension.
+      // Set this option to change it.
+      templateExtension: 'html',
+
       // or define a custom transform function
       cacheIdFromPath: function(filepath) {
-        return cacheId;
+        return filepath.replace(/\.jade$/, '.html');
       },
 
       // Support for jade locals to render at compile time
       locals: {
         foo: 'bar'
       },
-
-      // By default, Jade files are added to template cache with '.html' extension.
-      // Set this option to change it.
-      templateExtension: 'html',
 
       // setting this option will create only a single module that contains templates
       // from all the files, so you can load them all with module('foo')
