@@ -1,6 +1,6 @@
 {
   "name": "karma-ng-jade2js-preprocessor",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "A Karma plugin. Compile Jade AngularJS templates to JavaScript on the fly.",
   "main": "lib/index.js",
   "scripts": {
