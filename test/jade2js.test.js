@@ -1,28 +1,49 @@
 var expect = require('expect.js');
 var jade2js = require('../lib/jade2js');
-var LOGGER_STUB = { create: function(){ return { debug: function() {} } } };
+var LOGGER_STUB = {
+  create: function () {
+    return {
+      debug: function () {}
+    };
+  }
+};
 var BAST_PATH_STUB = 'foo';
-var FILE_STUB = { originalPath: '/tmp/original/path', path: '/tmp/new/path' }
-var TEST_CONFIG = { locals: { message: 'Hello world' } };
+var FILE_STUB = {
+  originalPath: '/tmp/original/path.jade',
+  path: '/tmp/new/path'
+};
 
 describe('jade2js', function() {
-  describe('default behavior [no config]', function() {
+
+  describe('default behavior (no config)', function() {
     var compileFn = jade2js(LOGGER_STUB, BAST_PATH_STUB);
     var html;
+
     before(function(done) {
-      var JADE_SNIPPET = 'h1 This is a bland message'
+      var JADE_SNIPPET = 'h1 This is a bland message';
       compileFn(JADE_SNIPPET, FILE_STUB, function(result) {
         html = result;
         done();
       });
     });
+
     it('should succeed', function() {
-      expect(html).to.be.ok();
+      expect(html).to.contain('/tmp/original/path.html');
     });
+
   });
-  describe('config object', function() {
-    var compileFn = jade2js(LOGGER_STUB, BAST_PATH_STUB, TEST_CONFIG);
+
+  describe('jade locals', function() {
+
+    var LOCALS_CONFIG = {
+      locals: {
+        message: 'Hello world'
+      }
+    };
+
+    var compileFn = jade2js(LOGGER_STUB, BAST_PATH_STUB, LOCALS_CONFIG);
     var html;
+
     before(function(done) {
       var JADE_SNIPPET = 'h1= message';
       compileFn(JADE_SNIPPET, FILE_STUB, function(result) {
@@ -30,10 +51,43 @@ describe('jade2js', function() {
         done();
       });
     });
+
     it('should contain the `locals` data', function() {
       expect(html).to.contain('Hello world');
     });
+
   });
+
+  describe('extension transform function', function() {
+
+    var TRANSFORM_CONFIG = {
+      cacheIdFromPath: function (path) {
+        return path.replace('.jst.jade', '.html');
+      }
+    };
+
+    var TRANSFORM_FILE_STUB = {
+      originalPath: '/tmp/original/path.jst.jade',
+      path: '/tmp/new/path'
+    };
+
+    var compileFn = jade2js(LOGGER_STUB, BAST_PATH_STUB, TRANSFORM_CONFIG);
+    var html;
+
+    before(function(done) {
+      var JADE_SNIPPET = 'h1 Hello World';
+      compileFn(JADE_SNIPPET, TRANSFORM_FILE_STUB, function(result) {
+        html = result;
+        done();
+      });
+    });
+
+    it('should apply the transform function', function() {
+      expect(html).to.contain('/tmp/original/path.html');
+    });
+
+  });
+
   describe('Jade config object', function() {
     var jade = require('jade');
     var originalCompile;
@@ -43,8 +97,8 @@ describe('jade2js', function() {
       originalCompile = jade.compile;
       jade.compile = function(template, options) {
         callOptions = options;
-        return function() { return ""; };
-      }
+        return function() { return ''; };
+      };
     });
 
     after(function() {
