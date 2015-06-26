@@ -27,10 +27,6 @@ describe('jade2js', function() {
       });
     });
 
-    it('should succeed', function() {
-      expect(html).to.contain('/tmp/original/path.html');
-    });
-
   });
 
   describe('jade locals', function() {
@@ -60,18 +56,12 @@ describe('jade2js', function() {
 
   describe('extension transform function', function() {
 
-    var TRANSFORM_CONFIG = {
-      cacheIdFromPath: function (path) {
-        return path.replace('.jst.jade', '.html');
-      }
-    };
-
     var TRANSFORM_FILE_STUB = {
       originalPath: '/tmp/original/path.jst.jade',
       path: '/tmp/new/path'
     };
 
-    var compileFn = jade2js(LOGGER_STUB, BAST_PATH_STUB, TRANSFORM_CONFIG);
+    var compileFn = jade2js(LOGGER_STUB, BAST_PATH_STUB);
     var html;
 
     before(function(done) {
@@ -80,10 +70,6 @@ describe('jade2js', function() {
         html = result;
         done();
       });
-    });
-
-    it('should apply the transform function', function() {
-      expect(html).to.contain('/tmp/original/path.html');
     });
 
   });
