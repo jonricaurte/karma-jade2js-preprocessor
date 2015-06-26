@@ -21,7 +21,7 @@
   ],
   "author": "Christian Maniewski <chmanie@gmail.com>",
   "dependencies": {
-    "jade": "~1.3.0"
+    "jade": "~1.11.0"
   },
   "peerDependencies": {
     "karma": ">=0.9"
@@ -30,6 +30,6 @@
   "homepage": "https://github.com/chmanie/karma-ng-jade2js-preprocessor",
   "devDependencies": {
     "expect.js": "^0.3.1",
-    "mocha": "^1.21.4"
+    "mocha": "^2.2.5"
   }
 }
