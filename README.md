@@ -1,26 +1,24 @@
-# karma-ng-jade2js-preprocessor
+# karma-jade2js-preprocessor
 
-> Preprocessor for converting jade files to [AngularJS](http://angularjs.org/) templates.
+> Preprocessor for converting jade files to Javascript.
 
-Forked from [karma-ng-html2js-preprocessor](https://github.com/karma-runner/karma-ng-html2js-preprocessor)
-
-[![Build Status](https://travis-ci.org/chmanie/karma-ng-jade2js-preprocessor.svg)](https://travis-ci.org/chmanie/karma-ng-jade2js-preprocessor)
+Forked from [karma-ng-jade2js-preprocessor](https://github.com/chmanie/karma-ng-jade2js-preprocessor)
 
 ## Installation
 
-The easiest way is to keep `karma-ng-jade2js-preprocessor` as a devDependency in your `package.json`.
+The easiest way is to keep `karma-jade2js-preprocessor` as a devDependency in your `package.json`.
 ```json
 {
   "devDependencies": {
     "karma": "~0.12",
-    "karma-ng-jade2js-preprocessor": "~0.2"
+    "karma-jade2js-preprocessor": "~0.1"
   }
 }
 ```
 
 You can simple do it by:
 ```bash
-npm install karma-ng-jade2js-preprocessor --save-dev
+npm install karma-jade2js-preprocessor --save-dev
 ```
 
 ## Configuration
@@ -29,7 +27,7 @@ npm install karma-ng-jade2js-preprocessor --save-dev
 module.exports = function(config) {
   config.set({
     preprocessors: {
-      '**/*.jade': ['ng-jade2js']
+      '**/*.jade': ['jade2js']
     },
 
     files: [
@@ -40,30 +38,11 @@ module.exports = function(config) {
     ],
 
     ngJade2JsPreprocessor: {
-      // strip this from the file path
-      stripPrefix: 'public/',
-
-      // prepend this to the
-      prependPrefix: 'served/',
-
-      // By default, Jade files are added to template cache with '.html' extension.
-      // Set this option to change it.
-      templateExtension: 'html',
-
-      // or define a custom transform function
-      cacheIdFromPath: function(filepath) {
-        return filepath.replace(/\.jade$/, '.html');
-      },
-
       // Support for jade locals to render at compile time
       locals: {
         foo: 'bar'
       },
-
-      // setting this option will create only a single module that contains templates
-      // from all the files, so you can load them all with module('foo')
-      moduleName: 'foo',
-
+      
       // Jade compiler options. For a list of possible options, consult Jade documentation.
       jadeOptions: {
         doctype: 'xml'
