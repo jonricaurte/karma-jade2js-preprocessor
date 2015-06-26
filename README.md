@@ -37,7 +37,7 @@ module.exports = function(config) {
       '**/*.jade'
     ],
 
-    ngJade2JsPreprocessor: {
+    jade2JsPreprocessor: {
       // Support for jade locals to render at compile time
       locals: {
         foo: 'bar'
